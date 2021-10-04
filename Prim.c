@@ -88,6 +88,7 @@ void Prim(tree* MST_t, edgeList* el_t, int index, int res, int eCount)
           if(el_t->edgeStarts[index]->edges[i]->weight < minWeight)
           {
             minIndex = el_t->edgeStarts[index]->edges[i]->end;
+            minWeight = el_t->edgeStarts[index]->edges[i]->weight;
             printf("다음 MST 후보: 정점 %d로 임시 결정\n", minIndex);
           }
         }
