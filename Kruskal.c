@@ -14,7 +14,6 @@ typedef struct Edge
   int start;
   int end;
   int weight;
-  struct Edge* link;
 } edge;
 
 int FindParent(int i)
