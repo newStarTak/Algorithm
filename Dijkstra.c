@@ -22,7 +22,7 @@ typedef struct EdgeList
   struct EdgeStart* edgeStarts[7];
 } edgeList;
 
-void Prim(edgeList* el_t, int index)
+void Dijkstra(edgeList* el_t, int index)
 {
   VisitedArray[index] = 1;
 
@@ -38,10 +38,10 @@ void Prim(edgeList* el_t, int index)
   {
     if(VisitedArray[el_t->edgeStarts[index]->edges[i]->end] == 0)
     {
-      printf("인접한 간선의 가중치 %d + 지금까지의 거리 %d와 끝점 %d의 dist 값 %d 대소 비교 중...\n", el_t->edgeStarts[index]->edges[i]->weight, dist[index], el_t->edgeStarts[index]->edges[i]->end, dist[el_t->edgeStarts[index]->edges[i]->end]);
+      printf("인접한 간선의 가중치 %d + 지금까지의 거리 %d와 끝점 %d의 distance 값 %d 대소 비교 중...\n", el_t->edgeStarts[index]->edges[i]->weight, dist[index], el_t->edgeStarts[index]->edges[i]->end, dist[el_t->edgeStarts[index]->edges[i]->end]);
       if(el_t->edgeStarts[index]->edges[i]->weight + dist[index] < dist[el_t->edgeStarts[index]->edges[i]->end])
       {
-        printf("간선의 가중치가 더 작습니다. dist 값을 %d로 변경합니다.\n\n", el_t->edgeStarts[index]->edges[i]->weight + dist[index]);
+        printf("간선의 가중치 + 지금까지의 거리가 더 작습니다. distance 값을 %d로 변경합니다.\n\n", el_t->edgeStarts[index]->edges[i]->weight + dist[index]);
         dist[el_t->edgeStarts[index]->edges[i]->end] = el_t->edgeStarts[index]->edges[i]->weight + dist[index];
       }
     }
@@ -69,7 +69,7 @@ void Prim(edgeList* el_t, int index)
 
   if(minIndex != -1)
   {
-    Prim(el_t, minIndex);
+    Dijkstra(el_t, minIndex);
   }
 }
 
@@ -137,7 +137,7 @@ int main(void)
   Connect(el6, 4, 5);
 
   dist[0] = 0;
-  Prim(el, 0);
+  Dijkstra(el, 0);
 
   return 0;
 }
